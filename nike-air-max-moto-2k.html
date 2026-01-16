@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeStore - Nike Air Zoom Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">ShoeStore</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="product-detail container">
+        <div class="product-images">
+            <img src="images/Nike Air Max moto 2k.jpg" alt="Nike Air Zoom" class="main-image">
+            <div class="thumbnail-grid">
+                <img src="images/Nike Air Max moto 2k side.jpg" alt="Side view" class="thumbnail">
+                <img src="images/Nike Air Max moto 2k top.jpg" alt="Top view" class="thumbnail">
+                <img src="images/Nike Air Max moto 2k back.jpg" alt="Back view" class="thumbnail">
+                <img src="images/Nike Air Max moto 2k sole.jpg" alt="Sole view" class="thumbnail">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1>Nike Air Zoom Pegasus 39</h1>
+            <div class="price">$149.99</div>
+            <p class="description">
+                Experience everyday comfort with the **Nike Air Max Moto 2K**. Designed for all-day wear with a sporty edge, these shoes feature a breathable mesh upper combined with synthetic overlays for durability and a secure, supportive fit. The visible Air Max cushioning in the heel delivers plush comfort and effective impact absorption, keeping your feet relaxed throughout the day. A padded collar and tongue enhance step-in comfort, while the sturdy rubber outsole ensures reliable traction and long-lasting wear. Perfect for casual outings, light activity, and street-ready style, the Nike Air Max Moto 2K blends comfort, support, and modern design effortlessly.
+
+            </p>
+
+            <div class="size-selector">
+                <h3>Select Size:</h3>
+                <div class="size-options">
+                    <button class="size-btn">7</button>
+                    <button class="size-btn">8</button>
+                    <button class="size-btn active">9</button>
+                    <button class="size-btn">10</button>
+                    <button class="size-btn">11</button>
+                    <button class="size-btn">12</button>
+                </div>
+            </div>
+
+            <div class="features">
+                <h3>Features:</h3>
+                <ul>
+                    <li>Lightweight mesh upper with synthetic overlays</li>
+                    <li>Visible Air Max unit in the heel for cushioned impact protection</li>
+                    <li>Soft foam midsole for all-day comfort and support</li>
+                    <li>Durable rubber outsole for reliable traction</li>
+                    <li>Padded collar and tongue for a secure, comfortable fit</li>
+                    <li>Classic sporty design with modern street-style appeal</li>
+                </ul>
+            </div>
+
+            <div class="actions">
+                <button class="btn" style="padding: 15px 40px; font-size: 18px;">Add to Cart</button>
+                <button class="btn" style="background-color: #333; margin-left: 10px;">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 ShoeStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thumbnail click handler
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function () {
+                const mainImage = document.querySelector('.main-image');
+                mainImage.src = this.src;
+            });
+        });
+
+        // Size selector
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

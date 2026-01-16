@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeStore - Puma Nitro Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">ShoeStore</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="product-detail container">
+        <div class="product-images">
+            <img src="images/Puma Nitro main.jpg" alt="Puma Nitro" class="main-image">
+            <div class="thumbnail-grid">
+                <img src="images/Puma Nitro side.jpg" alt="Side view" class="thumbnail">
+                <img src="images/Puma Nitro top.jpg" alt="Top view" class="thumbnail">
+                <img src="images/Puma Nitro back.jpg" alt="Back view" class="thumbnail">
+                <img src="images/Puma Nitro sole.jpg" alt="Sole view" class="thumbnail">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1>Puma Velocity Nitro 3</h1>
+            <div class="price">$119.99</div>
+            <p class="description">
+                Experience explosive performance with the **Puma Velocity Nitro 3**. Powered by Puma's revolutionary NITRO™ foam technology, these running shoes deliver exceptional energy return and ultra-lightweight cushioning. The engineered mesh upper provides optimal breathability and a secure fit, while the PUMAGRIP outsole offers superior traction on various surfaces. Perfect for daily training and high-mileage runs, the Velocity Nitro 3 combines responsive cushioning with stability for a smooth, comfortable ride. Whether you're hitting the track or the streets, these shoes provide the perfect balance of speed and comfort.
+
+            </p>
+
+            <div class="size-selector">
+                <h3>Select Size:</h3>
+                <div class="size-options">
+                    <button class="size-btn">7</button>
+                    <button class="size-btn">8</button>
+                    <button class="size-btn active">9</button>
+                    <button class="size-btn">10</button>
+                    <button class="size-btn">11</button>
+                    <button class="size-btn">12</button>
+                </div>
+            </div>
+
+            <div class="features">
+                <h3>Features:</h3>
+                <ul>
+                    <li>NITRO™ foam technology for lightweight, responsive cushioning</li>
+                    <li>Engineered mesh upper for breathability and secure fit</li>
+                    <li>PUMAGRIP outsole for excellent traction on multiple surfaces</li>
+                    <li>TPU heel counter for enhanced stability and support</li>
+                    <li>Dynamic midfoot band for adaptive lockdown</li>
+                    <li>Reflective elements for low-light visibility</li>
+                    <li>Gender-specific lasts for optimal fit</li>
+                </ul>
+            </div>
+
+            <div class="actions">
+                <button class="btn" style="padding: 15px 40px; font-size: 18px;">Add to Cart</button>
+                <button class="btn" style="background-color: #333; margin-left: 10px;">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 ShoeStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thumbnail click handler
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function () {
+                const mainImage = document.querySelector('.main-image');
+                mainImage.src = this.src;
+            });
+        });
+
+        // Size selector
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
