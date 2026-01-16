@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShoeStore - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -16,6 +18,11 @@
                     <li><a href="categories.html">Categories</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="cart.html">
+                            Cart
+                            <span class="cart-count"
+                                style="background: #ff4757; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
+                        </a></li>
                 </ul>
             </nav>
         </div>
@@ -26,10 +33,10 @@
         <div class="video-container">
             <video id="heroVideo" muted>
                 <source src="images/Nike Shoes background.mp4" type="video/mp4">
-                
+
             </video>
         </div>
-        
+
         <!-- Content that appears at the end of video -->
         <div class="hero-content" id="heroContent">
             <div class="container">
@@ -42,7 +49,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Skip Button -->
         <button id="skipBtn" class="skip-btn">⏭️ Skip to Shop</button>
     </section>
@@ -102,55 +109,55 @@
         const skipBtn = document.getElementById('skipBtn');
         const replayBtn = document.getElementById('replayBtn');
         const soundBtn = document.getElementById('soundBtn');
-        
+
         // Initially hide content and show skip button
         heroContent.style.opacity = '0';
         skipBtn.style.display = 'block';
-        
+
         // Video ends event
-        heroVideo.addEventListener('ended', function() {
+        heroVideo.addEventListener('ended', function () {
             // Show content with animation
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
-            
+
             // Start flashing animation
             document.querySelectorAll('.flash-text, .flash-btn').forEach(element => {
                 element.classList.add('flash-animation');
             });
-            
+
             // Hide skip button
             skipBtn.style.display = 'none';
         });
-        
+
         // Skip button click
-        skipBtn.addEventListener('click', function() {
+        skipBtn.addEventListener('click', function () {
             heroVideo.pause();
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
             this.style.display = 'none';
-            
+
             // Start flashing animation
             document.querySelectorAll('.flash-text, .flash-btn').forEach(element => {
                 element.classList.add('flash-animation');
             });
         });
-        
+
         // Replay button click
-        replayBtn.addEventListener('click', function() {
+        replayBtn.addEventListener('click', function () {
             heroVideo.currentTime = 0;
             heroVideo.play();
             heroContent.style.opacity = '0';
             heroContent.style.transform = 'translateY(20px)';
             skipBtn.style.display = 'block';
-            
+
             // Remove flashing animation
             document.querySelectorAll('.flash-text, .flash-btn').forEach(element => {
                 element.classList.remove('flash-animation');
             });
         });
-        
+
         // Sound button click
-        soundBtn.addEventListener('click', function() {
+        soundBtn.addEventListener('click', function () {
             if (heroVideo.muted) {
                 heroVideo.muted = false;
                 this.innerHTML = '🔇 Mute';
@@ -159,17 +166,17 @@
                 this.innerHTML = '🔊 Unmute';
             }
         });
-        
+
         // Start video on page load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             heroVideo.play();
         });
-        
+
         // Pause video when user scrolls away
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const heroSection = document.querySelector('.hero');
             const rect = heroSection.getBoundingClientRect();
-            
+
             if (rect.top < -100 || rect.bottom < 100) {
                 heroVideo.pause();
             } else {
@@ -180,4 +187,5 @@
         });
     </script>
 </body>
+
 </html>

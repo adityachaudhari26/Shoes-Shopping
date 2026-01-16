@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeStore - Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .cart-title {
+            margin-bottom: 30px;
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-details h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        .cart-item-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .quantity {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: #ff3742;
+        }
+
+        .cart-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .cart-summary h2 {
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row.total {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background: #45a049;
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-cart h2 {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart p {
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto;
+            }
+            
+            .cart-item-image {
+                grid-row: span 2;
+            }
+            
+            .cart-item-actions {
+                grid-column: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">ShoeStore</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="cart.html">
+                        Cart 
+                        <span class="cart-count" style="background: #ff4757; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; display: none;">0</span>
+                    </a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h1 class="cart-title">Shopping Cart</h1>
+        
+        <div id="cart-content">
+            <!-- Cart content will be loaded by JavaScript -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2026 ShoeStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize cart count
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                let cart = JSON.parse(localStorage.getItem('shoestore-cart')) || [];
+                cartCount.textContent = cart.length;
+                cartCount.style.display = cart.length > 0 ? 'inline' : 'none';
+            }
+        }
+
+        // Load cart content
+        function loadCartContent() {
+            const cartContent = document.getElementById('cart-content');
+            let cart = JSON.parse(localStorage.getItem('shoestore-cart')) || [];
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <h2>Your cart is empty</h2>
+                        <p>Looks like you haven't added any shoes to your cart yet.</p>
+                        <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate total
+            let subtotal = 0;
+            cart.forEach(item => {
+                const price = parseFloat(item.price.replace('$', ''));
+                subtotal += price;
+            });
+            
+            const tax = subtotal * 0.08; // 8% tax
+            const shipping = subtotal > 100 ? 0 : 9.99;
+            const total = subtotal + tax + shipping;
+            
+            cartContent.innerHTML = `
+                <div class="cart-grid">
+                    <div class="cart-items">
+                        ${cart.map((item, index) => `
+                            <div class="cart-item" data-index="${index}">
+                                <div class="cart-item-image">
+                                    <img src="${item.image}" alt="${item.name}">
+                                </div>
+                                <div class="cart-item-details">
+                                    <h3>${item.name}</h3>
+                                    <p>Size: ${item.size}</p>
+                                    <div class="cart-item-price">${item.price}</div>
+                                </div>
+                                <div class="cart-item-actions">
+                                    <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <h2>Order Summary</h2>
+                        <div class="summary-row">
+                            <span>Subtotal (${cart.length} items)</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Estimated Tax (8%)</span>
+                            <span>$${tax.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>$${total.toFixed(2)}</span>
+                        </div>
+                        
+                        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                        <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('shoestore-cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('shoestore-cart', JSON.stringify(cart));
+            
+            // Update display
+            loadCartContent();
+            updateCartCount();
+            
+            // Show notification
+            showNotification('Item removed from cart');
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            let cart = JSON.parse(localStorage.getItem('shoestore-cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items before checking out.');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        }
+
+        // Notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ff4757;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                max-width: 300px;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            loadCartContent();
+        });
+    </script>
+</body>
+
+</html>
